@@ -5,19 +5,24 @@ const initialState = {
     lists: [],
     loading: false,
     error: null,
+    latlongs: [],
 };
 
 const mapSlice = createSlice({
-    name: "cake",
+    name: "search",
     initialState,
+    reducers: {},
     extraReducers: (builder) => {
         builder.addCase(searchMaps.pending, (state) => {
             state.loading = true;
         });
         builder.addCase(searchMaps.fulfilled, (state, actions) => {
             state.loading = false;
-            state.lists = actions.payload
-        })
+            state.lists = actions.payload;
+        });
+        builder.addCase(searchMaps.rejected, (state, actions) => {
+            state.error = actions.error;
+        });
     },
 });
 

@@ -1,3 +1,4 @@
+import React from "react";
 
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
@@ -9,19 +10,20 @@ import DirectionsIcon from "@mui/icons-material/Directions";
 
 // * IMPORT
 import { useAppDispatch } from "../hooks/useRedux";
-import useDebounce from "../hooks/useDebounce";
 import { searchMaps } from "../stores/modules/maps/mapThunk";
 
 const SearchMapInput = () => {
+    const [searchValue, setSearchValue] = React.useState('')
     const dispatch = useAppDispatch();
-    // Debounce function để dispatch searchMaps
-    const debounceSearch = useDebounce((value) => {
-        dispatch(searchMaps(value));
-    }, 1000);
+    // Debounce function để dispatch searchMaps0);
 
     const handleChange = (event) => {
-        debounceSearch(event.target.value);
+        setSearchValue(event.target.value)
     };
+
+    const handleSubmit = () => {
+        dispatch(searchMaps(searchValue));
+    }
 
     return (
         <Paper
@@ -41,7 +43,7 @@ const SearchMapInput = () => {
                 inputProps={{ "aria-label": "search google maps" }}
                 onChange={handleChange}
             />
-            <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
+            <IconButton type="button" sx={{ p: "10px" }} aria-label="search" onClick={handleSubmit}>
                 <SearchIcon />
             </IconButton>
             <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />

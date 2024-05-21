@@ -15,7 +15,7 @@ const Dashboard = () => {
             <Grid item xs={7}>
                 <Box sx={{
                     width: '100%',
-                    height: '100%'
+                    height: '100vh'
                 }} >
                     <MapRender />
                 </Box>

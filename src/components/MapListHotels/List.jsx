@@ -1,51 +1,48 @@
 import React from "react";
 
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import Divider from "@mui/material/Divider";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
-import Typography from "@mui/material/Typography";
+import { Box, ListItemButton } from "@mui/material";
+
+import { useAppSelector } from "../../hooks/useRedux";
+import { useContextGlobal } from "../../providers/contexts/GlobalContext";
 
 // eslint-disable-next-line react/prop-types
-const ListHotel = ({ items = [1,2,3,4,5]}) => {
- 
+const ListHotel = () => {
+    const { lists, loading } = useAppSelector((state) => state.maps);
+    const { setLocation } = useContextGlobal();
+    if (loading) {
+        return <Box>...Loading</Box>;
+    }
     return (
         <List
-            sx={{ width: "100%", bgcolor: "background.paper", marginTop: '10px', boxShadow: 1 }}
+            sx={{
+                width: "100%",
+                bgcolor: "background.paper",
+                marginTop: "10px",
+                boxShadow: 1,
+            }}
         >
-            {items.map((item, index) => (
-                <React.Fragment key={index}>
-                    <ListItem alignItems="flex-start">
-                        <ListItemAvatar>
-                            <Avatar
-                                alt="Remy Sharp"
-                                src="/images/place.png"
-                            />
-                        </ListItemAvatar>
-                        <ListItemText
-                            primary="Brunch this weekend?"
-                            secondary={
-                                <React.Fragment>
-                                    <Typography
-                                        sx={{ display: "inline" }}
-                                        component="span"
-                                        variant="body2"
-                                        color="text.primary"
-                                    >
-                                        Ali Connors
-                                    </Typography>
-                                    {
-                                        " — I'll be in your neighborhood doing errands this…"
-                                    }
-                                </React.Fragment>
-                            }
-                        />
-                    </ListItem>
-                    <Divider variant="inset" component="li" />
-                </React.Fragment>
-            ))}
+            {Array.isArray(lists) &&
+                lists.length > 0 &&
+                lists.map((item, index) => (
+                    <React.Fragment key={index}>
+                        <ListItemButton
+                            alignItems="flex-center"
+                            onClick={() => setLocation([item?.lat, item?.lon])}
+                        >
+                            <ListItemAvatar>
+                                <Avatar
+                                    alt="Remy Sharp"
+                                    src="/images/place.png"
+                                />
+                            </ListItemAvatar>
+                            <ListItemText primary={item.display_name} />
+                        </ListItemButton>
+                    </React.Fragment>
+                ))}
         </List>
     );
 };

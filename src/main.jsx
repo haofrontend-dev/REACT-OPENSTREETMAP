@@ -13,11 +13,14 @@ import "@fontsource/roboto/700.css";
 
 import router from "./routes";
 import store from "./stores";
+import { GlobalProvider } from "./providers/contexts/GlobalContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
         <Provider store={store}>
-            <RouterProvider router={router} />
+            <GlobalProvider>
+                <RouterProvider router={router} />
+            </GlobalProvider>
         </Provider>
     </React.StrictMode>
 );
