@@ -3,10 +3,8 @@ import {
     AppBar,
     Toolbar,
     styled,
-    Stack,
     IconButton,
     Badge,
-    Button,
 } from "@mui/material";
 import PropTypes from "prop-types";
 
@@ -61,15 +59,6 @@ const Header = ({ toggleMobileSidebar }) => {
                     </Badge>
                 </IconButton>
                 <Box flexGrow={1} />
-                <Stack spacing={1} direction="row" alignItems="center">
-                    <Button
-                        variant="contained"
-                        disableElevation
-                        color="primary"
-                    >
-                        Download
-                    </Button>
-                </Stack>
             </ToolbarStyled>
         </AppBarStyled>
     );

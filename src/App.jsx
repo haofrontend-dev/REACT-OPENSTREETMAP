@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // * LIB
 import React from "react";
 import { Outlet } from "react-router-dom";
@@ -39,9 +40,9 @@ function App() {
                     <Container
                         sx={{
                             paddingTop: "20px",
-                            maxWidth: "1200px",
+                            maxWidth: "2000px",
                         }}
-                        maxWidth="xl"
+                        maxWidth={false}
                     >
                         {/* ------------------------------------------- */}
                         {/* Page Route */}

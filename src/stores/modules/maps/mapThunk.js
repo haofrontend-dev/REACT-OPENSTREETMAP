@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import MapService from "../../../api/services/MapService/service";
+import MapService from "@/api/services/MapService/service";
 
 export const searchMaps = createAsyncThunk(
     "search/map",
@@ -13,3 +13,15 @@ export const searchMaps = createAsyncThunk(
         }
     }
 );
+
+export const  getAllLocationDriver = createAsyncThunk(
+    "get/location/driver",
+    async (key, { rejectWithValue }) => {
+        try {
+            const response = await MapService.getLocationDriver();
+            return response;
+        } catch (error) {
+            return rejectWithValue(error);
+        }
+    }
+) 

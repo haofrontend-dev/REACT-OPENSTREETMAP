@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import App from "../App";
-import Hotels from "../pages/hotel";
+import MapPage from "../pages/Map";
 const routes = [
     {
         path: "/",
@@ -10,7 +10,7 @@ const routes = [
             {
                 path: "",
                 redirect: '/',
-                element: <Hotels />,
+                element: <MapPage />,
             },
         ],
     },

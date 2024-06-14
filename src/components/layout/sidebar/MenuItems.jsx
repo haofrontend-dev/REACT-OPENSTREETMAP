@@ -1,5 +1,5 @@
 
-import { HotelOutlined, TwoWheelerTwoTone, CarRentalOutlined } from '@mui/icons-material'
+import { TwoWheelerTwoTone, CarRentalOutlined, MapOutlined } from '@mui/icons-material'
 import { uniqueId } from "lodash";
 
 const Menuitems = [
@@ -9,8 +9,8 @@ const Menuitems = [
     },
     {
         id: uniqueId(),
-        title: "Hotels",
-        icon: HotelOutlined,
+        title: "Map Controll",
+        icon: MapOutlined,
         href: "/",
     },
     {

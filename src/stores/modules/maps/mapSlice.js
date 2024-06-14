@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { searchMaps } from "./mapThunk";
+import { searchMaps, getAllLocationDriver } from "./mapThunk";
 const initialState = {
     lists: [],
     loading: false,
@@ -17,6 +17,13 @@ const mapSlice = createSlice({
             state.loading = true;
         });
         builder.addCase(searchMaps.fulfilled, (state, actions) => {
+            state.loading = false;
+            state.lists = actions.payload;
+        });
+        builder.addCase(getAllLocationDriver.pending, (state) => {
+            state.loading = true;
+        });
+        builder.addCase(getAllLocationDriver.fulfilled, (state, actions) => {
             state.loading = false;
             state.lists = actions.payload;
         });

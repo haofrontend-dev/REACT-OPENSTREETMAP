@@ -4,9 +4,9 @@ const GlobalContext = React.createContext(null);
 
 // eslint-disable-next-line react/prop-types
 const GlobalProvider = ({ children }) => {
-    const [location, setLocation] = React.useState([])
+    const [location, setLocation] = React.useState([12.238791, 109.196749])
 	GlobalContext.displayName = 'Global Context';
-    
+
     React.useEffect(() => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
